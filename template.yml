@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  word-of-the-day-be
+
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  IndexOperationsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: index_operations/
+      Handler: app.lambda_handler
+      Runtime: python3.6
+      Events:
+        IndexOperations:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /index-operation
+            Method: get
+
+Outputs:
+
+  IndexOperationsApi:
+    Description: "API Gateway endpoint URL for Index Operations"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/index-operation/"
+  IndexOperationsFunction:
+    Description: "Function for index operations"
+    Value: !GetAtt IndexOperationsFunction.Arn
+
