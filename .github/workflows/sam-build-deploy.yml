@@ -12,7 +12,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install python3.6 jq -y
-          update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10
+          update-alternatives --install /usr/bin/python python /usr/bin/python3 10
       - name: Configure AWS credentials
         id: creds
         uses: aws-actions/configure-aws-credentials@v1
