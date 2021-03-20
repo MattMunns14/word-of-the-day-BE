@@ -3,10 +3,16 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   word-of-the-day-be
 
+Parameters:
+  DomainName:
+    Type: String
+  Certificate:
+    Type: String
+  HostedZoneId:
+    Type: String
+  Subdomain:
+    Type: String
 
-Globals:
-  Function:
-    Timeout: 3
 
 Resources:
   IndexOperationsFunction:
@@ -19,15 +25,23 @@ Resources:
         IndexOperations:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            RestApiId: !Ref APIEndpoint
             Path: /index-operation
             Method: get
+  APIEndpoint:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: stage
+      Domain:
+        DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
+        CertificateArn: !Ref Certificate
+        Route53:
+          HostedZoneId: !Ref HostedZoneId
 
-Outputs:
 
-  IndexOperationsApi:
-    Description: "API Gateway endpoint URL for Index Operations"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/index-operation/"
-  IndexOperationsFunction:
-    Description: "Function for index operations"
-    Value: !GetAtt IndexOperationsFunction.Arn
+
+
+
+
+
 
