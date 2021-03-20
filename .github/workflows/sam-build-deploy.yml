@@ -11,7 +11,7 @@ jobs:
       - name: Install Dependencies with Apt Get
         run: |
           sudo apt-get update
-          sudo apt-get install python3.8 jq -y
+          sudo apt-get install python3.6 jq -y
       - name: Configure AWS credentials
         id: creds
         uses: aws-actions/configure-aws-credentials@v1
