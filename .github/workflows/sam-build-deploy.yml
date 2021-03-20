@@ -5,6 +5,8 @@ on:
 
 jobs:
   sam-build-deploy:
+    runs-on: ubuntu-latest
+    steps:
     - name: sam build
       uses: TractorZoom/sam-cli-action@master
       with:
