@@ -37,11 +37,3 @@ Resources:
         CertificateArn: !Ref Certificate
         Route53:
           HostedZoneId: !Ref HostedZoneId
-
-
-
-
-
-
-
-

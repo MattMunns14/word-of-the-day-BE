@@ -20,7 +20,7 @@ jobs:
     - name: sam deploy
       uses: TractorZoom/sam-cli-action@master
       with:
-        sam_command: "deploy --template-file ../../template.yml \
+        sam_command: "deploy --template-file template.yml \
                              --stack-name ${{ secrets.STACK_NAME}} \
                              --s3-bucket ${{ secrets.S3_BUCKET }} \
                              --parameter-overrides \
@@ -32,35 +32,3 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - name: Install Dependencies with Apt Get
-#        run: |
-#          sudo apt-get update
-#          sudo apt-get install python3.6 jq -y
-#          which python3.6
-#          which python
-#          ls /usr/bin/
-#          sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10
-#      - name: Configure AWS credentials
-#        id: creds
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: ${{ secrets.AWS_REGION }}
-#      - name: SAM Build
-#        run: |
-#          sam build
-#      - name: SAM Deploy
-#        run: |
-#          # Run SAM Deploy
-#          sam deploy --template-file template.yaml \
-#            --stack-name ${{ secrets.STACK_NAME}} \
-#            --s3-bucket ${{ secrets.S3_BUCKET }} \
-#            --parameter-overrides \
-#              'DomainName=wordsoftheday.org,Subdomain=app \
-#              Certificate=${{ secrets.CERTIFICATE }},HostedZoneID=${{ secrets.HOSTED_ZONE_ID }}' \
-#            --capabilities CAPABILITY_NAMED_IAM \
-#            --role-arn ${{ secrets.ROLE_ARN }}
