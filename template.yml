@@ -34,7 +34,7 @@ Resources:
       StageName: stage
       Cors:
         AllowMethods: "'POST, GET'"
-        AllowOrigin: "'www.wordsoftheday.org'"
+        AllowOrigin: "'https://wordsoftheday.org'"
         AllowCredentials: True
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
