@@ -27,7 +27,7 @@ Resources:
           Properties:
             RestApiId: !Ref APIEndpoint
             Path: /index-operation
-            Method: get
+            Method: post
   APIEndpoint:
     Type: AWS::Serverless::Api
     Properties:
