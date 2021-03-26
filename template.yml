@@ -35,7 +35,7 @@ Resources:
       Cors:
         AllowMethods: "'POST, GET'"
         AllowOrigin: "'www.wordsoftheday.org'"
-        AllowCredential: True
+        AllowCredentials: True
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
         CertificateArn: !Ref Certificate
