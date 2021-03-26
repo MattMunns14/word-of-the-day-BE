@@ -32,6 +32,10 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: stage
+      AllowCredential: True
+      Cors:
+        AllowMethods: "'POST, GET'"
+        AllowOrigin: "'www.wordsoftheday.org'"
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
         CertificateArn: !Ref Certificate
