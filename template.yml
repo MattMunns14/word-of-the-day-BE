@@ -3,6 +3,17 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   word-of-the-day-be
 
+
+Globals:
+  Api:
+    # enable CORS; to make more specific, change the origin wildcard
+    # to a particular domain name, e.g. "'www.example.com'"
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+
+
 Parameters:
   DomainName:
     Type: String
@@ -32,10 +43,6 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: stage
-      Cors:
-        AllowMethods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
-        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-        AllowOrigin: "'*'"
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
         CertificateArn: !Ref Certificate
