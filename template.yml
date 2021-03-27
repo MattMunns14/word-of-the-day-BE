@@ -4,15 +4,6 @@ Description: >
   word-of-the-day-be
 
 
-Globals:
-  Api:
-    Cors:
-      AllowMethods: "'*'"
-      AllowHeaders: "'*'"
-      AllowOrigin: "'https://wordsoftheday.org'"
-      AllowCredentials: True
-
-
 Parameters:
   DomainName:
     Type: String
@@ -41,6 +32,11 @@ Resources:
   APIEndpoint:
     Type: AWS::Serverless::Api
     Properties:
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'https://wordsoftheday.org'"
+        AllowCredentials: True
       StageName: prod
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
