@@ -33,8 +33,9 @@ Resources:
     Properties:
       StageName: stage
       Cors:
-        AllowMethods: "'POST, GET'"
-        AllowOrigin: "'https://wordsoftheday.org'"
+        AllowMethods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
         AllowCredentials: True
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
