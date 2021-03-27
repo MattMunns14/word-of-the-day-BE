@@ -41,7 +41,7 @@ Resources:
   APIEndpoint:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: stage
+      StageName: prod
       Domain:
         DomainName: !Join ['', [!Ref Subdomain, ., !Ref DomainName]]
         CertificateArn: !Ref Certificate

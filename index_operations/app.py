@@ -6,7 +6,7 @@ def lambda_handler(event, context):
 
     return {
         'headers': {
-            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Headers': "Content-Type, Authorization",
             'Access-Control-Allow-Origin': "'https://wordsoftheday.org'",
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         },
