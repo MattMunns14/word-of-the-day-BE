@@ -5,10 +5,10 @@ def lambda_handler(event, context):
     print(event)
 
     return {
-        "headers": {
+        'headers': {
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST,GET'
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         },
         "statusCode": 200,
         "body": json.dumps({
