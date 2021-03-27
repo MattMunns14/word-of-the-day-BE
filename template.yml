@@ -10,6 +10,7 @@ Globals:
       AllowMethods: "'*'"
       AllowHeaders: "'*'"
       AllowOrigin: "'https://wordsoftheday.org'"
+      AllowCredentials: True
 
 
 Parameters:
