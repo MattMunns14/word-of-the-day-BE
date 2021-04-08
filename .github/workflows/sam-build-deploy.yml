@@ -26,6 +26,7 @@ jobs:
                              --parameter-overrides \
                              DomainName=wordsoftheday.org Subdomain=api \
                              Certificate=${{ secrets.CERTIFICATE }} HostedZoneId=${{ secrets.HOSTED_ZONE_ID }} \
+                             UsersTable=${{ secrets.USERS_TABLE }} \
                              --capabilities CAPABILITY_NAMED_IAM \
                              --role-arn ${{ secrets.ROLE_ARN }} \
                               --region ${{ secrets.AWS_REGION }}"
