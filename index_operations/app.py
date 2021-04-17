@@ -4,6 +4,7 @@ from registration import register_user
 
 
 def lambda_handler(event, context):
+    print(event)
     if event['body']['action'] == 'register':
         return register_user(event['body'])
     else:
