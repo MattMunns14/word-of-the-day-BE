@@ -29,7 +29,7 @@ def register_user(registration_payload: dict):
             'password': hashlib.md5(registration_payload['password'])
         }
         dynamo.put_item(
-            Table=os.environ['USERS_TABLE'],
+            TableName=os.environ['USERS_TABLE'],
             Item=dict_to_dynamo_json(user_item)
         )
         return {

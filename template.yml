@@ -13,8 +13,7 @@ Parameters:
     Type: String
   Subdomain:
     Type: String
-  UsersTable:
-    Type: String
+
 
 
 Resources:
@@ -26,7 +25,7 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          USERS_TABLE: !Ref UsersTable
+          USERS_TABLE: !GetAtt UsersTable.TableName
       Events:
         IndexOperations:
           Type: Api
@@ -48,3 +47,20 @@ Resources:
         CertificateArn: !Ref Certificate
         Route53:
           HostedZoneId: !Ref HostedZoneId
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !GetAtt UsersTable.TableName
+
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: user_email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: user_email
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: WordsOfTheDayUsersTable
