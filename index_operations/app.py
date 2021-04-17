@@ -5,8 +5,9 @@ from registration import register_user
 
 def lambda_handler(event, context):
     print(event)
-    if event['body']['action'] == 'register':
-        return register_user(event['body'])
+    body = json.loads(event['body'])
+    if body['action'] == 'register':
+        return register_user(body)
     else:
         return {
             'headers': {
