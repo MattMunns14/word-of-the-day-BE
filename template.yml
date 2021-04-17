@@ -23,6 +23,9 @@ Resources:
       CodeUri: index_operations/
       Handler: app.lambda_handler
       Runtime: python3.8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !GetAtt UsersTable.TableName
       Environment:
         Variables:
           USERS_TABLE: !GetAtt UsersTable.TableName
@@ -47,9 +50,6 @@ Resources:
         CertificateArn: !Ref Certificate
         Route53:
           HostedZoneId: !Ref HostedZoneId
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !GetAtt UsersTable.TableName
 
   UsersTable:
     Type: AWS::DynamoDB::Table
