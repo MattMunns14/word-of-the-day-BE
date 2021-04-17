@@ -26,7 +26,7 @@ def register_user(registration_payload: dict):
     else:
         user_item = {
             'user_email': email,
-            'password': hashlib.md5(registration_payload['password'].encode('utf-8'))
+            'password': hashlib.md5(registration_payload['password'].encode('utf-8')).hexdigest()
         }
         dynamo.put_item(
             TableName=os.environ['USERS_TABLE'],
