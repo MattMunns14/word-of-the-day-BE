@@ -44,7 +44,7 @@ def register_user(registration_payload: dict):
 
 def user_exists(email, dynamo):
 
-    email_item = dynamo.get_item(Table=os.environ['USERS_TABLE'],
+    email_item = dynamo.get_item(TableName=os.environ['USERS_TABLE'],
                                  Key={'email': {'S': email}})
     try:
         job_item = dynamo_item_to_dict(email_item['Item'])
