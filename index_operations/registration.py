@@ -25,7 +25,7 @@ def register_user(registration_payload: dict):
         }
     else:
         user_item = {
-            'email': email,
+            'user_email': email,
             'password': hashlib.md5(registration_payload['password'])
         }
         dynamo.put_item(
