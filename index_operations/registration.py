@@ -1,11 +1,11 @@
 import boto3
 import json
 import os
-from .utils import dict_to_dynamo_json, dynamo_item_to_dict
+from utils import dict_to_dynamo_json, dynamo_item_to_dict
 import hashlib
 
 
-HEADERS= {
+HEADERS = {
             'Access-Control-Allow-Headers': "*",
             'Access-Control-Allow-Origin': 'https://wordsoftheday.org',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
