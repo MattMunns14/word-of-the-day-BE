@@ -47,7 +47,7 @@ def user_exists(email, dynamo):
     email_item = dynamo.get_item(TableName=os.environ['USERS_TABLE'],
                                  Key={'user_email': {'S': email}})
     try:
-        job_item = dynamo_item_to_dict(email_item['Item'])
+        _ = dynamo_item_to_dict(email_item['Item'])
         return True
     except KeyError:
         return False

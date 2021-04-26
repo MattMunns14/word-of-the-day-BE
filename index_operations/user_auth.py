@@ -1,7 +1,9 @@
 import boto3
 import jwt
 
+
 class userAuthentication(object):
+
     def __init__(self):
         dynamodb = boto3.resource('dynamodb')
         self.user_table = dynamodb.Table('words_users')
@@ -9,7 +11,7 @@ class userAuthentication(object):
 
     def create_user(self, email, first_name, last_name, phone_number=None):
         response = self.user_table.put_item(
-            Item = {
+            Item={
                 'email': email,
                 'first_name': first_name,
                 'last_name': last_name,
