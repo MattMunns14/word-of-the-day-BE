@@ -1,7 +1,7 @@
 import json
 
 from registration import register_user
-from login import login_user_and_return_token
+from login import login_user_and_return_token, verify_token
 
 
 def lambda_handler(event, context):
@@ -11,6 +11,8 @@ def lambda_handler(event, context):
         return register_user(body)
     elif body['action'] == 'login':
         return login_user_and_return_token(body)
+    elif body['action'] == 'verify_token':
+        return verify_token(body)
     else:
         return {
             'headers': {

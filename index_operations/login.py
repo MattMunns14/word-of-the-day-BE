@@ -15,6 +15,23 @@ HEADERS = {
         }
 
 
+def verify_token(body: dict):
+    token = body['token']
+    try:
+        user_jwt = jwt.decode(token, key=os.environ['SECRET'], algorithms=['HS256'])
+    except jwt.exceptions.InvalidSignatureError:
+        return {
+            'headers': HEADERS,
+            'statusCode': 400,
+            "body": json.dumps({'message': 'Nice try Bozo'})
+        }
+    return {
+        'headers': HEADERS,
+        'statusCode': 200,
+        'body': json.dumps({'message': 'Valid Token'})
+    }
+
+
 def login_user_and_return_token(body: dict):
     required_keys = ['email', 'password']
     for key in required_keys:
@@ -42,7 +59,6 @@ def login_user_and_return_token(body: dict):
 
     email_item = dynamo.get_item(TableName=os.environ['USERS_TABLE'],
                                  Key={'user_email': {'S': email}})
-    print(email_item)
     user_password = dynamo_item_to_dict(email_item['Item'])['password']
 
     hashed_input_password = hashlib.md5(password.encode('utf-8')).hexdigest()
@@ -51,7 +67,7 @@ def login_user_and_return_token(body: dict):
         user_jwt = jwt.encode({'user_email': email, 'timestamp': time.time()},
                               os.environ['SECRET'],
                               algorithm='HS256')
-        print(user_jwt)
+
         return {
             'headers': HEADERS,
             'statusCode': 200,
