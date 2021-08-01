@@ -16,7 +16,7 @@ HEADERS = {
 
 
 def verify_token(body: dict):
-    token = body['token']
+    token = body['token_to_verify']
     try:
         user_jwt = jwt.decode(token, key=os.environ['SECRET'], algorithms=['HS256'])
     except jwt.exceptions.InvalidSignatureError:
