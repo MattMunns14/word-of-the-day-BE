@@ -47,9 +47,9 @@ Resources:
       GetDashboardData:
         Type: Api
         Properties:
-          RestApiID: !Ref GetDashboardDataAPIEndpoint
+          RestApiId: !Ref GetDashboardDataAPIEndpoint
           Path: /dashboard-data
-          Method: GET
+          Method: get
 
 
   IndexOperationsFunction:
