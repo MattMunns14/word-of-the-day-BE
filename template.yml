@@ -53,7 +53,7 @@ Resources:
         DashboardDataEvent:
           Type: Api
           Properties:
-            RestApiId: !Ref GetDashboardDataAPIEndpoint
+            RestApiId: !Ref IndexOperationsAPIEndpoint
             Path: /index-operation
             Method: post
 
