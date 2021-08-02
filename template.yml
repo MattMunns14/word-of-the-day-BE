@@ -22,7 +22,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: get_dashboard_data/
-      Handelr: app.lambda_handler
+      Handler: app.lambda_handler
       Runtime: python3.8
     Environment:
       Variables:
