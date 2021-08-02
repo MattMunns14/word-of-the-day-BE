@@ -20,7 +20,7 @@ Parameters:
 Resources:
 
   GetDashboardDataAPIEndpoint:
-    Type: AWS::Serverless::Api
+    Type: AWS::ApiGateway::RestApi
     Properties:
       Cors:
         AllowMethods: "'*'"
@@ -44,7 +44,7 @@ Resources:
       Variables:
         SECRET: !Ref Secret
     Events:
-      GetDashboardData:
+      GetDashboardDataEvent:
         Type: Api
         Properties:
           RestApiId: !Ref GetDashboardDataAPIEndpoint
