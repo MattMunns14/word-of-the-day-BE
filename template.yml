@@ -50,10 +50,10 @@ Resources:
           USERS_TABLE: !Ref UsersTable
           SECRET: !Ref Secret
       Events:
-        IndexOperations:
+        DashboardDataEvent:
           Type: Api
           Properties:
-            RestApiId: !Ref IndexOperationsAPIEndpoint
+            RestApiId: !Ref GetDashboardDataAPIEndpoint
             Path: /index-operation
             Method: post
 
