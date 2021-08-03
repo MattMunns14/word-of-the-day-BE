@@ -20,7 +20,7 @@ Parameters:
 Resources:
 
   GetDashboardDataAPIEndpoint:
-    Type: AWS::ApiGateway::RestApi
+    Type: AWS::Serverless::Api
     Properties:
       Cors:
         AllowMethods: "'*'"
@@ -36,6 +36,7 @@ Resources:
 
   GetDashboardDataFunction:
     Type: AWS::Serverless::Function
+    DependsOn: GetDashboardDataAPIEndpoint
     Properties:
       CodeUri: get_dashboard_data/
       Handler: app.lambda_handler
