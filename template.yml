@@ -19,20 +19,20 @@ Parameters:
 
 Resources:
 
-#  GetDashboardDataAPIEndpoint:
-#    Type: AWS::Serverless::Api
-#    Properties:
-#      Cors:
-#        AllowMethods: "'*'"
-#        AllowHeaders: "'*'"
-#        AllowOrigin: "'https://wordsoftheday.org'"
-#        AllowCredentials: True
-#      StageName: prod
-#      Domain:
-#        DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
-#        CertificateArn: !Ref Certificate
-#        Route53:
-#          HostedZoneId: !Ref HostedZoneId
+  GetDashboardDataAPIEndpoint:
+    Type: AWS::Serverless::Api
+    Properties:
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'https://wordsoftheday.org'"
+        AllowCredentials: True
+      StageName: prod
+      Domain:
+        DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
+        CertificateArn: !Ref Certificate
+        Route53:
+          HostedZoneId: !Ref HostedZoneId
 
   GetDashboardDataFunction:
     Type: AWS::Serverless::Function
@@ -47,7 +47,7 @@ Resources:
       GetDashboardDataEvent:
         Type: Api
         Properties:
-#          RestApiId: !Ref GetDashboardDataAPIEndpoint
+          RestApiId: !Ref GetDashboardDataAPIEndpoint
           Path: /dashboard-data
           Method: get
 
