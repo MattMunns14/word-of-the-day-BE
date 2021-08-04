@@ -19,37 +19,41 @@ Parameters:
 
 Resources:
 
-  GetDashboardDataAPIEndpoint:
-    Type: AWS::Serverless::Api
-    Properties:
-      Cors:
-        AllowMethods: "'*'"
-        AllowHeaders: "'*'"
-        AllowOrigin: "'https://wordsoftheday.org'"
-        AllowCredentials: True
-      StageName: prod
-      Domain:
-        DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
-        CertificateArn: !Ref Certificate
-        Route53:
-          HostedZoneId: !Ref HostedZoneId
-
-  GetDashboardDataFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: get_dashboard_data/
-      Handler: app.lambda_handler
-      Runtime: python3.8
-    Environment:
-      Variables:
-        SECRET: !Ref Secret
-    Events:
-      GetDashboardDataEvent:
-        Type: Api
-        Properties:
-          RestApiId: !Ref GetDashboardDataAPIEndpoint
-          Path: /dashboard-data
-          Method: get
+#  GetDashboardDataAPIEndpoint:
+#    Type: AWS::Serverless::Api
+#    Properties:
+#      Cors:
+#        AllowMethods: "'*'"
+#        AllowHeaders: "'*'"
+#        AllowOrigin: "'https://wordsoftheday.org'"
+#        AllowCredentials: True
+#      StageName: prod
+#      Domain:
+#        DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
+#        CertificateArn: !Ref Certificate
+#        Route53:
+#          HostedZoneId: !Ref HostedZoneId
+#
+#  GetDashboardDataMethod:
+#    Type: AWS::ApiGateway::Method
+#
+#
+#  GetDashboardDataFunction:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: get_dashboard_data/
+#      Handler: app.lambda_handler
+#      Runtime: python3.8
+#    Environment:
+#      Variables:
+#        SECRET: !Ref Secret
+#    Events:
+#      GetDashboardDataEvent:
+#        Type: Api
+#        Properties:
+#          RestApiId: !Ref GetDashboardDataAPIEndpoint
+#          Path: /dashboard-data
+#          Method: get
 
 
   IndexOperationsFunction:
@@ -70,8 +74,10 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref IndexOperationsAPIEndpoint
-            Path: /index-operation
-            Method: post
+            Path: /*
+            Method: any
+#            Path: /index-operation
+#            Method: post
 
   IndexOperationsAPIEndpoint:
     Type: AWS::Serverless::Api
