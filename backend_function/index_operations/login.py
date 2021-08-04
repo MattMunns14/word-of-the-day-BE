@@ -6,7 +6,7 @@ import time
 import boto3
 import jwt
 
-from utils import dynamo_item_to_dict, user_exists
+from .utils import dynamo_item_to_dict, user_exists
 
 HEADERS = {
             'Access-Control-Allow-Headers': "*",
