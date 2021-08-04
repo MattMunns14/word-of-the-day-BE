@@ -35,25 +35,25 @@ Resources:
 #        Route53:
 #          HostedZoneId: !Ref HostedZoneId
 
-  GetDashboardDataFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: get_dashboard_data/
-      Handler: app.lambda_handler
-      Runtime: python3.8
-    Environment:
-      Variables:
-        SECRET: !Ref Secret
-    Events:
-      GetDashboardDataEvent:
-        Type: Api
-        Properties:
-          RestApiId: !Ref IndexOperationsAPIEndpoint
-          Path: /dashboard-data
-          Method: get
+#  GetDashboardDataFunction:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: get_dashboard_data/
+#      Handler: app.lambda_handler
+#      Runtime: python3.8
+#    Environment:
+#      Variables:
+#        SECRET: !Ref Secret
+#    Events:
+#      GetDashboardDataEvent:
+#        Type: Api
+#        Properties:
+#          RestApiId: !Ref IndexOperationsAPIEndpoint
+#          Path: /{}
+#          Method: any
 
 
-  IndexOperationsFunction:
+  BackendFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: index_operations/
@@ -70,11 +70,11 @@ Resources:
         IndexOperationsEvent:
           Type: Api
           Properties:
-            RestApiId: !Ref IndexOperationsAPIEndpoint
-            Path: /index-operation
-            Method: post
+            RestApiId: !Ref APIEndpoint
+            Path: /{path+}
+            Method: any
 
-  IndexOperationsAPIEndpoint:
+  APIEndpoint:
     Type: AWS::Serverless::Api
     Properties:
       Cors:
@@ -88,8 +88,6 @@ Resources:
         CertificateArn: !Ref Certificate
         Route53:
           HostedZoneId: !Ref HostedZoneId
-
-
 
   UsersTable:
     Type: AWS::DynamoDB::Table
