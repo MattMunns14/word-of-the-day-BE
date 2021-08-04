@@ -1,7 +1,7 @@
 import json
 
-from registration import register_user
-from login import login_user_and_return_token, verify_token
+from index_operations.registration import register_user
+from index_operations.login import login_user_and_return_token, verify_token
 
 
 def lambda_handler(event, context):
