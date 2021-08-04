@@ -19,44 +19,10 @@ Parameters:
 
 Resources:
 
-#  GetDashboardDataAPIEndpoint:
-#    Type: AWS::Serverless::Api
-#    DependsOn: GetDashboardDataFunction
-#    Properties:
-#      Cors:
-#        AllowMethods: "'*'"
-#        AllowHeaders: "'*'"
-#        AllowOrigin: "'https://wordsoftheday.org'"
-#        AllowCredentials: True
-#      StageName: prod
-#      Domain:
-#        DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
-#        CertificateArn: !Ref Certificate
-#        Route53:
-#          HostedZoneId: !Ref HostedZoneId
-
-#  GetDashboardDataFunction:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      CodeUri: get_dashboard_data/
-#      Handler: app.lambda_handler
-#      Runtime: python3.8
-#    Environment:
-#      Variables:
-#        SECRET: !Ref Secret
-#    Events:
-#      GetDashboardDataEvent:
-#        Type: Api
-#        Properties:
-#          RestApiId: !Ref IndexOperationsAPIEndpoint
-#          Path: /{}
-#          Method: any
-
-
   BackendFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: index_operations/
+      CodeUri: backend_function/
       Handler: app.lambda_handler
       Runtime: python3.8
       Policies:
