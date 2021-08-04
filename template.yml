@@ -21,22 +21,19 @@ Resources:
 
   GetDashboardDataAPIEndpoint:
     Type: AWS::Serverless::Api
+    DependsOn: GetDashboardDataFunction
     Properties:
       Cors:
         AllowMethods: "'*'"
         AllowHeaders: "'*'"
         AllowOrigin: "'https://wordsoftheday.org'"
         AllowCredentials: True
-      StageName: stage
+      StageName: prod
       Domain:
         DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
         CertificateArn: !Ref Certificate
         Route53:
           HostedZoneId: !Ref HostedZoneId
-#
-#  GetDashboardDataMethod:
-#    Type: AWS::ApiGateway::Method
-
 
   GetDashboardDataFunction:
     Type: AWS::Serverless::Function
