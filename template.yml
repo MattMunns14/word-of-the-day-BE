@@ -22,15 +22,12 @@ Resources:
   GetDashboardDataAPIEndpoint:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionBody:
-        EventSource: !Ref GetDashboardDataFunction
-
       Cors:
         AllowMethods: "'*'"
         AllowHeaders: "'*'"
         AllowOrigin: "'https://wordsoftheday.org'"
         AllowCredentials: True
-      StageName: prod
+      StageName: stage
       Domain:
         DomainName: !Join [ '', [ !Ref Subdomain, ., !Ref DomainName ] ]
         CertificateArn: !Ref Certificate
